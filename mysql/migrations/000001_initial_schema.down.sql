@@ -1,6 +1,8 @@
 -- テーブル削除のSQL文
 DROP TABLE IF EXISTS spot_sponsor_names;
 
+DROP TABLE IF EXISTS campus_donations;
+
 DROP TABLE IF EXISTS room_teachers;
 
 DROP TABLE IF EXISTS rooms;

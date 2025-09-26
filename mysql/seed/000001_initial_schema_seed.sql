@@ -492,3 +492,9 @@ VALUES
     (11, "1号棟"),
     (12, "1号棟"),
     (13, "1号棟");
+
+INSERT INTO
+    campus_donations (user_id, teacher_id, year_id, price, remark, is_first_check, is_last_check, received_at)
+VALUES
+    (1, 1, 1, 2000, "nothing", false, false, '2023-02-22'),
+    (2, 2, 1, 2000, "nothing", false, false, '2022-02-22');

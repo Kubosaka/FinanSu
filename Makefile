@@ -27,8 +27,8 @@ run-db:
 stop-db:
 	docker compose -f compose.db.yml down
 
-# ビルドと起動
 build-run:
+# ビルドと起動
 	docker compose -f compose.db.yml up -d
 	docker compose up --build
 
@@ -99,6 +99,8 @@ run-swagger:
 
 run-all:
 	make run-db
+	sleep 5
+	make migrate
 	make run
 	make run-swagger
 

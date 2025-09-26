@@ -1,10 +1,10 @@
 -- 年度テーブル
 CREATE TABLE
     years (
-        id int(10) unsigned not null auto_increment,
-        year int(10) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        year INT(10) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
@@ -12,12 +12,12 @@ CREATE TABLE
 CREATE TABLE
     users (
         id int(10) unsigned not null auto_increment,
-        name varchar(255) not null,
-        bureau_id int(10) not null,
-        role_id int(10) not null,
-        is_deleted boolean DEFAULT false,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        name VARCHAR(255) NOT NULL,
+        bureau_id INT(10) NOT NULL,
+        role_id INT(10) NOT NULL,
+        is_deleted BOOLEAN DEFAULT false,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
@@ -131,7 +131,7 @@ CREATE TABLE
         id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
         amount INT(10) NOT NULL,
         log_category ENUM("income", "expenditure", "sponsor's income") NOT NULL,
-        year_id INT(10) UNSIGNED NOT NULL,
+        year_id INT(10) UNSIGNED NOT NULL, -- expenditureはNULLを許可する
         receive_option ENUM("transfer", "hand"), -- expenditureはNULLを許可する
         is_checked BOOLEAN NOT NULL DEFAULT FALSE,
         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -156,17 +156,17 @@ CREATE TABLE
 -- 協賛活動テーブル
 CREATE TABLE
     activities (
-        id int(10) unsigned not null auto_increment,
-        user_id int(10),
-        is_done boolean,
-        sponsor_id int(10),
-        feature varchar(255),
-        expense int(10),
-        remark varchar(255),
-        design int(10),
-        url varchar(255),
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT(10),
+        is_done BOOLEAN,
+        sponsor_id INT(10),
+        feature VARCHAR(255),
+        expense INT(10),
+        remark VARCHAR(255),
+        design INT(10),
+        url VARCHAR(255),
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
@@ -174,10 +174,10 @@ CREATE TABLE
 CREATE TABLE
     activity_styles (
         id int(10) unsigned not null auto_increment,
-        activity_id int(10),
-        sponsor_style_id int(10),
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        activity_id INT(10),
+        sponsor_style_id INT(10),
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
@@ -198,73 +198,73 @@ CREATE TABLE
 CREATE TABLE
     activity_informations (
         id int(10) unsigned not null auto_increment,
-        activity_id int(10),
-        bucket_name varchar(255),
-        file_name varchar(255),
-        file_type varchar(255),
-        design_progress int(10),
-        file_information varchar(255),
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        activity_id INT(10),
+        bucket_name VARCHAR(255),
+        file_name VARCHAR(255),
+        file_type VARCHAR(255),
+        design_progress INT(10),
+        file_information VARCHAR(255),
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 局テーブル
 CREATE TABLE
     bureaus (
-        id int(10) unsigned not null auto_increment,
-        name varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 学科・分野テーブル
 CREATE TABLE
     departments (
-        id int(10) unsigned not null auto_increment,
-        name varchar(255),
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255),
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 募金テーブル
 CREATE TABLE
     fund_informations (
-        id int(10) unsigned not null auto_increment,
-        user_id int(10) not null,
-        teacher_id int(10) not null,
-        price int(10) not null,
-        remark varchar(255),
-        is_first_check boolean,
-        is_last_check boolean,
-        received_at varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT(10) NOT NULL,
+        teacher_id INT(10) NOT NULL,
+        price INT(10) NOT NULL,
+        remark VARCHAR(255),
+        is_first_check BOOLEAN,
+        is_last_check BOOLEAN,
+        received_at VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- メール認証テーブル
 CREATE TABLE
     mail_auth (
-        id int(10) unsigned not null unique auto_increment,
-        email varchar(255) unique,
-        password varchar(255) not null,
-        user_id int(10) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT,
+        email VARCHAR(255) UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        user_id INT(10) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- パスワードリセットトークンテーブル
 CREATE TABLE
     password_reset_tokens (
-        id int(10) unsigned not null unique auto_increment,
-        user_id int(10) not null,
-        token varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT,
+        user_id INT(10) NOT NULL,
+        token VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
@@ -272,76 +272,77 @@ CREATE TABLE
 CREATE TABLE
     roles (
         id int(10) unsigned not null auto_increment,
-        name varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        name VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- セッションテーブル
 CREATE TABLE
     session (
-        id int(10) unsigned not null unique auto_increment,
-        auth_id int(10) not null,
-        user_id int(10) not null,
-        access_token varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
-        PRIMARY KEY (auth_id)
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        auth_id INT(10) NOT NULL,
+        user_id INT(10) NOT NULL,
+        access_token VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE KEY (auth_id) -- auth_id がユニークであるべき場合
     );
 
 -- 協賛スタイルテーブル
 CREATE TABLE
     sponsor_styles (
         id int(10) unsigned not null auto_increment,
-        style varchar(255) not null,
-        feature varchar(255) not null,
-        price int(10),
-        is_deleted boolean default false,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        style VARCHAR(255) NOT NULL,
+        feature VARCHAR(255) NOT NULL,
+        price INT(10),
+        is_deleted BOOLEAN DEFAULT false,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 協賛企業テーブル
 CREATE TABLE
     sponsors (
-        id int(10) unsigned not null auto_increment,
-        name varchar(255) not null,
-        tel varchar(255) not null,
-        email varchar(255) not null,
-        address varchar(255) not null,
-        representative varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        tel VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        representative VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 教員テーブル
 CREATE TABLE
     teachers (
-        id int(10) unsigned not null auto_increment,
-        name varchar(255) not null,
-        position varchar(255) not null,
-        department_id int(10),
-        room varchar(255),
-        is_black boolean,
-        remark varchar(255),
-        is_deleted boolean default false,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        position VARCHAR(255) NOT NULL,
+        department_id INT(10),
+        room VARCHAR(255),
+        is_black BOOLEAN,
+        remark VARCHAR(255),
+        is_deleted BOOLEAN DEFAULT false,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 年度期間テーブル
 CREATE TABLE
     year_periods (
-        id int(10) unsigned not null auto_increment,
-        year_id int(10) not null,
-        started_at datetime not null,
-        ended_at datetime not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        year_id INT(10) NOT NULL,
+        started_at DATETIME NOT NULL,
+        ended_at DATETIME NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
@@ -371,21 +372,21 @@ CREATE TABLE
 -- 棟テーブル
 CREATE TABLE
     buildings (
-        id int(10) unsigned not null auto_increment,
-        name varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
     );
 
 -- 号棟テーブル
 CREATE TABLE
     building_units (
-        id int(10) unsigned not null auto_increment,
-        building_id int(10) unsigned not null default 1,
-        unit_number varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        building_id INT(10) UNSIGNED NOT NULL DEFAULT 1,
+        unit_number VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         FOREIGN KEY (building_id) REFERENCES buildings (id)
     );
@@ -393,11 +394,11 @@ CREATE TABLE
 -- 階テーブル
 CREATE TABLE
     floors (
-        id int(10) unsigned not null auto_increment,
-        building_unit_id int(10) unsigned not null,
-        floor_number varchar(255) not null,
-        created_at datetime not null default current_timestamp,
-        updated_at datetime not null default current_timestamp on update current_timestamp,
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        building_unit_id INT(10) UNSIGNED NOT NULL,
+        floor_number VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         FOREIGN KEY (building_unit_id) REFERENCES building_units (id)
     );
@@ -406,8 +407,8 @@ CREATE TABLE
 CREATE TABLE
     rooms (
         id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-        floor_id INT(10) UNSIGNED not null,
-        room_name varchar(255) NOT NULL,
+        floor_id INT(10) UNSIGNED NOT NULL,
+        room_name VARCHAR(255) NOT NULL,
         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
@@ -418,12 +419,32 @@ CREATE TABLE
 CREATE TABLE
     room_teachers (
         id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-        room_id INT(10) unsigned not null,
-        teacher_id INT(10) unsigned not null,
+        room_id INT(10) UNSIGNED NOT NULL,
+        teacher_id INT(10) UNSIGNED NOT NULL,
         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         FOREIGN KEY (room_id) REFERENCES rooms (id) ON DELETE CASCADE,
+        FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE CASCADE
+    );
+
+-- 学内募金テーブル
+CREATE TABLE
+    campus_donations (
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT(10) UNSIGNED NOT NULL,
+        teacher_id INT(10) UNSIGNED NOT NULL,
+        year_id INT(10) UNSIGNED NOT NULL,
+        price INT(10) NOT NULL,
+        remark VARCHAR(255),
+        is_first_check BOOLEAN,
+        is_last_check BOOLEAN,
+        received_at VARCHAR(255) NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        FOREIGN KEY (year_id) REFERENCES years (id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
         FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE CASCADE
     );
 
