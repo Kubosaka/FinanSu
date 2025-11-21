@@ -229,22 +229,6 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
--- 募金テーブル
-CREATE TABLE
-    fund_informations (
-        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-        user_id INT(10) NOT NULL,
-        teacher_id INT(10) NOT NULL,
-        price INT(10) NOT NULL,
-        remark VARCHAR(255),
-        is_first_check BOOLEAN,
-        is_last_check BOOLEAN,
-        received_at VARCHAR(255) NOT NULL,
-        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
-    );
-
 -- メール認証テーブル
 CREATE TABLE
     mail_auth (

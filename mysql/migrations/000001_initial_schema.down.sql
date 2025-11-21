@@ -33,8 +33,6 @@ DROP TABLE IF EXISTS password_reset_tokens;
 
 DROP TABLE IF EXISTS mail_auth;
 
-DROP TABLE IF EXISTS fund_informations;
-
 DROP TABLE IF EXISTS departments;
 
 DROP TABLE IF EXISTS bureaus;
