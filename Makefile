@@ -23,6 +23,14 @@ down:
 run-db:
 	docker compose -f compose.db.yml up -d
 
+# dbコンテナの起動 + マイグレーション + シードデータ投入
+run-db-init:
+	docker compose -f compose.db.yml up -d
+	./scripts/wait-for-mysql.sh
+	make migrate
+	make seed-db
+	@echo "Database initialization completed!"
+
 # dbコンテナの停止(ずっと起動したくない時はこっちで停止)
 stop-db:
 	docker compose -f compose.db.yml down
@@ -98,9 +106,7 @@ run-swagger:
 	docker compose -f compose.swagger.yml up -d
 
 run-all:
-	make run-db
-	sleep 5
-	make migrate
+	make run-db-init
 	make run
 	make run-swagger
 
