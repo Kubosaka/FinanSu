@@ -167,7 +167,7 @@ INSERT INTO
 VALUES
     ("test1@example.com", "$2a$10$vtmStGYxc8/HdhBYJWyztOMrdpw1QaKxsuGdi72i8iqeyp.1997ke", 1),
     ("test2@example.com", "$2a$10$vtmStGYxc8/HdhBYJWyztOMrdpw1QaKxsuGdi72i8iqeyp.1997ke", 2),
-    ("test3@example.com", "$2a$10$vtmStGYxc8/HdhBYJWyJWyztOMrdpw1QaKxsuGdi72i8iqeyp.1997ke", 3),
+    ("test3@example.com", "$2a$10$vtmStGYxc8/HdhBYJWyztOMrdpw1QaKxsuGdi72i8iqeyp.1997ke", 3),
     ("test4@example.com", "$2a$10$vtmStGYxc8/HdhBYJWyztOMrdpw1QaKxsuGdi72i8iqeyp.1997ke", 4);
 
 INSERT INTO
