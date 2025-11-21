@@ -38,7 +38,7 @@ del-vol:
 
 # 生成したコンテナ、イメージ、ボリューム、ネットワークを一括削除
 del-all:
-	compose down --rmi all --volumes --remove-orphans
+	docker compose down --rmi all --volumes --remove-orphans
 
 # ボリューム削除→ビルド→起動
 run-rebuild:
@@ -47,7 +47,7 @@ run-rebuild:
 
 # dbとminioの停止とボリューム削除(dbを初期化したい時)
 del-db:
-	compose -f compose.db.yml down --volumes
+	docker compose -f compose.db.yml down --volumes
 
 # apiの起動(db起動後)
 run-api:
