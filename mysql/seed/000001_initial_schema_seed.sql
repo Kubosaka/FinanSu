@@ -157,12 +157,6 @@ VALUES
     ('FL');
 
 INSERT INTO
-    fund_informations (user_id, teacher_id, price, remark, is_first_check, is_last_check, received_at)
-VALUES
-    (1, 1, 2000, "nothing", false, false, '2023-02-22'),
-    (2, 2, 2000, "nothing", false, false, '2022-02-22');
-
-INSERT INTO
     mail_auth (email, password, user_id)
 VALUES
     ("test1@example.com", "$2a$10$vtmStGYxc8/HdhBYJWyztOMrdpw1QaKxsuGdi72i8iqeyp.1997ke", 1),
