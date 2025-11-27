@@ -1,10 +1,9 @@
 package controller
 
 import (
-	"net/http"
-
 	"encoding/csv"
 	"fmt"
+	"net/http"
 	"strconv"
 
 	"github.com/NUTFes/FinanSu/api/generated"
@@ -21,7 +20,7 @@ type incomeExpenditureManagementController struct {
 type IncomeExpenditureManagementController interface {
 	IndexIncomeExpenditureManagements(echo.Context) error
 	PutIncomeExpenditureManagementCheck(echo.Context) error
-	DownloadFundInformationsCSV(echo.Context) error
+	DownloadIncomeExpenditureManagementCSV(echo.Context) error
 }
 
 func NewIncomeExpenditureManagementController(u usecase.IncomeExpenditureManagementUseCase) IncomeExpenditureManagementController {
@@ -60,7 +59,7 @@ type (
 	PutIncomeExpenditureManagementsCheckIdJSONBody = generated.PutIncomeExpenditureManagementsCheckIdJSONBody
 )
 
-func (i *incomeExpenditureManagementController) DownloadFundInformationsCSV(c echo.Context) error {
+func (i *incomeExpenditureManagementController) DownloadIncomeExpenditureManagementCSV(c echo.Context) error {
 	ctx := c.Request().Context()
 	year := c.QueryParam("year")
 
@@ -96,15 +95,15 @@ func (i *incomeExpenditureManagementController) DownloadFundInformationsCSV(c ec
 	}
 
 	w := c.Response().Writer
-	fileName := fmt.Sprintf("fund_informations_%s.csv", year)
+	fileName := fmt.Sprintf("income_expenditure_management_%s.csv", year)
 	attachment := fmt.Sprintf(`attachment; filename="%s"`, fileName)
 	w.Header().Set("Content-Type", "text/csv; charset=Shift_JIS")
 	w.Header().Set("Content-Disposition", attachment)
 
-	return makeFundInformationsCSV(w, records)
+	return makeIncomeExpenditureManagementCSV(w, records)
 }
 
-func makeFundInformationsCSV(writer http.ResponseWriter, records [][]string) error {
+func makeIncomeExpenditureManagementCSV(writer http.ResponseWriter, records [][]string) error {
 	encoder := japanese.ShiftJIS.NewEncoder()
 	shiftJISWriter := transform.NewWriter(writer, encoder)
 	csvWriter := csv.NewWriter(shiftJISWriter)

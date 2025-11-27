@@ -100,6 +100,7 @@ export * from './getFundInformationsDetails200';
 export * from './getFundInformationsDetailsYear200';
 export * from './getFundInformationsId200';
 export * from './getFundInformationsIdDetails200';
+export * from './getIncomeExpenditureManagementCsvDownloadParams';
 export * from './getIncomeExpenditureManagements200';
 export * from './getIncomeExpenditureManagementsParams';
 export * from './getReceipts200';

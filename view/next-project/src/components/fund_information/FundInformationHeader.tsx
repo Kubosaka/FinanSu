@@ -21,7 +21,10 @@ const FundInformationHeader: React.FC<FundInformationHeaderProps> = ({ totalBala
       </Title>
       <div className='flex w-full flex-col gap-2 md:w-auto md:flex-row md:items-center'>
         <OutlinePrimaryButton className='w-full md:w-fit'>
-          <a href={`${process.env.CSR_API_URI}/fund_informations/csv/download`} download>
+          <a
+            href={`${process.env.CSR_API_URI}/income_expenditure_management/csv/download`}
+            download
+          >
             CSVダウンロード
           </a>
         </OutlinePrimaryButton>

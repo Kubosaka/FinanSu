@@ -1523,10 +1523,10 @@ paths:
               schema:
                 type: string
                 format: binary
-  /fund_informations/csv/download:
+  /income_expenditure_management/csv/download:
     get:
       tags:
-        - fund_information
+        - income_expenditure_management
       description: 収支管理一覧のCSVダウンロード、財務向けのページ
       parameters:
         - name: year
@@ -1536,12 +1536,12 @@ paths:
             type: integer
       responses:
         "200":
-          description: fund_informationのCSVダウンロード
+          description: income_expenditure_managementのCSVダウンロード
           headers:
             Content-Disposition:
               schema:
                 type: string
-                example: attachment; filename=fund_informations.csv
+                example: attachment; filename=income_expenditure_management.csv
           content:
             text/csv:
               schema:

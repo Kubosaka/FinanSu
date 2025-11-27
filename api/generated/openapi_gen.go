@@ -511,8 +511,8 @@ type GetFinancialRecordsCsvDownloadParams struct {
 	Year int `form:"year" json:"year"`
 }
 
-// GetFundInformationsCsvDownloadParams defines parameters for GetFundInformationsCsvDownload.
-type GetFundInformationsCsvDownloadParams struct {
+// GetIncomeExpenditureManagementCsvDownloadParams defines parameters for GetIncomeExpenditureManagementCsvDownload.
+type GetIncomeExpenditureManagementCsvDownloadParams struct {
 	// Year year
 	Year *int `form:"year,omitempty" json:"year,omitempty"`
 }
@@ -951,8 +951,8 @@ type ServerInterface interface {
 	// (PUT /financial_records/{id})
 	PutFinancialRecordsId(ctx echo.Context, id int) error
 
-	// (GET /fund_informations/csv/download)
-	GetFundInformationsCsvDownload(ctx echo.Context, params GetFundInformationsCsvDownloadParams) error
+	// (GET /income_expenditure_management/csv/download)
+	GetIncomeExpenditureManagementCsvDownload(ctx echo.Context, params GetIncomeExpenditureManagementCsvDownloadParams) error
 
 	// (GET /income_expenditure_managements)
 	GetIncomeExpenditureManagements(ctx echo.Context, params GetIncomeExpenditureManagementsParams) error
@@ -2354,12 +2354,12 @@ func (w *ServerInterfaceWrapper) PutFinancialRecordsId(ctx echo.Context) error {
 	return err
 }
 
-// GetFundInformationsCsvDownload converts echo context to params.
-func (w *ServerInterfaceWrapper) GetFundInformationsCsvDownload(ctx echo.Context) error {
+// GetIncomeExpenditureManagementCsvDownload converts echo context to params.
+func (w *ServerInterfaceWrapper) GetIncomeExpenditureManagementCsvDownload(ctx echo.Context) error {
 	var err error
 
 	// Parameter object where we will unmarshal all parameters from the context
-	var params GetFundInformationsCsvDownloadParams
+	var params GetIncomeExpenditureManagementCsvDownloadParams
 	// ------------- Optional query parameter "year" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "year", ctx.QueryParams(), &params.Year)
@@ -2368,7 +2368,7 @@ func (w *ServerInterfaceWrapper) GetFundInformationsCsvDownload(ctx echo.Context
 	}
 
 	// Invoke the callback with all the unmarshaled arguments
-	err = w.Handler.GetFundInformationsCsvDownload(ctx, params)
+	err = w.Handler.GetIncomeExpenditureManagementCsvDownload(ctx, params)
 	return err
 }
 
@@ -3403,7 +3403,7 @@ func RegisterHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 	router.DELETE(baseURL+"/financial_records/:id", wrapper.DeleteFinancialRecordsId)
 	router.GET(baseURL+"/financial_records/:id", wrapper.GetFinancialRecordsId)
 	router.PUT(baseURL+"/financial_records/:id", wrapper.PutFinancialRecordsId)
-	router.GET(baseURL+"/fund_informations/csv/download", wrapper.GetFundInformationsCsvDownload)
+	router.GET(baseURL+"/income_expenditure_management/csv/download", wrapper.GetIncomeExpenditureManagementCsvDownload)
 	router.GET(baseURL+"/income_expenditure_managements", wrapper.GetIncomeExpenditureManagements)
 	router.PUT(baseURL+"/income_expenditure_managements/check/:id", wrapper.PutIncomeExpenditureManagementsCheckId)
 	router.GET(baseURL+"/incomes", wrapper.GetIncomes)

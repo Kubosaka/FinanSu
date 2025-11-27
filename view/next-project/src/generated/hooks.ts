@@ -91,7 +91,7 @@ import type {
   GetFestivalItemsUsersParams,
   GetFinancialRecordsCsvDownloadParams,
   GetFinancialRecordsParams,
-  GetFundInformationsCsvDownloadParams,
+  GetIncomeExpenditureManagementCsvDownloadParams,
   GetIncomeExpenditureManagementsParams,
   GetReceipts200,
   GetReceiptsId200,
@@ -5072,21 +5072,21 @@ export const useGetFinancialRecordsCsvDownload = <TError = unknown>(
 /**
  * 収支管理一覧のCSVダウンロード、財務向けのページ
  */
-export type getFundInformationsCsvDownloadResponse200 = {
+export type getIncomeExpenditureManagementCsvDownloadResponse200 = {
   data: Blob;
   status: 200;
 };
 
-export type getFundInformationsCsvDownloadResponseComposite =
-  getFundInformationsCsvDownloadResponse200;
+export type getIncomeExpenditureManagementCsvDownloadResponseComposite =
+  getIncomeExpenditureManagementCsvDownloadResponse200;
 
-export type getFundInformationsCsvDownloadResponse =
-  getFundInformationsCsvDownloadResponseComposite & {
+export type getIncomeExpenditureManagementCsvDownloadResponse =
+  getIncomeExpenditureManagementCsvDownloadResponseComposite & {
     headers: Headers;
   };
 
-export const getGetFundInformationsCsvDownloadUrl = (
-  params?: GetFundInformationsCsvDownloadParams,
+export const getGetIncomeExpenditureManagementCsvDownloadUrl = (
+  params?: GetIncomeExpenditureManagementCsvDownloadParams,
 ) => {
   const normalizedParams = new URLSearchParams();
 
@@ -5099,16 +5099,16 @@ export const getGetFundInformationsCsvDownloadUrl = (
   const stringifiedParams = normalizedParams.toString();
 
   return stringifiedParams.length > 0
-    ? `/fund_informations/csv/download?${stringifiedParams}`
-    : `/fund_informations/csv/download`;
+    ? `/income_expenditure_management/csv/download?${stringifiedParams}`
+    : `/income_expenditure_management/csv/download`;
 };
 
-export const getFundInformationsCsvDownload = async (
-  params?: GetFundInformationsCsvDownloadParams,
+export const getIncomeExpenditureManagementCsvDownload = async (
+  params?: GetIncomeExpenditureManagementCsvDownloadParams,
   options?: RequestInit,
-): Promise<getFundInformationsCsvDownloadResponse> => {
-  return customFetch<getFundInformationsCsvDownloadResponse>(
-    getGetFundInformationsCsvDownloadUrl(params),
+): Promise<getIncomeExpenditureManagementCsvDownloadResponse> => {
+  return customFetch<getIncomeExpenditureManagementCsvDownloadResponse>(
+    getGetIncomeExpenditureManagementCsvDownloadUrl(params),
     {
       ...options,
       method: 'GET',
@@ -5116,22 +5116,22 @@ export const getFundInformationsCsvDownload = async (
   );
 };
 
-export const getGetFundInformationsCsvDownloadKey = (
-  params?: GetFundInformationsCsvDownloadParams,
-) => [`/fund_informations/csv/download`, ...(params ? [params] : [])] as const;
+export const getGetIncomeExpenditureManagementCsvDownloadKey = (
+  params?: GetIncomeExpenditureManagementCsvDownloadParams,
+) => [`/income_expenditure_management/csv/download`, ...(params ? [params] : [])] as const;
 
-export type GetFundInformationsCsvDownloadQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getFundInformationsCsvDownload>>
+export type GetIncomeExpenditureManagementCsvDownloadQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getIncomeExpenditureManagementCsvDownload>>
 >;
-export type GetFundInformationsCsvDownloadQueryError = unknown;
+export type GetIncomeExpenditureManagementCsvDownloadQueryError = unknown;
 
-export const useGetFundInformationsCsvDownload = <TError = unknown>(
-  params?: GetFundInformationsCsvDownloadParams,
+export const useGetIncomeExpenditureManagementCsvDownload = <TError = unknown>(
+  params?: GetIncomeExpenditureManagementCsvDownloadParams,
   options?: {
-    swr?: SWRConfiguration<Awaited<ReturnType<typeof getFundInformationsCsvDownload>>, TError> & {
-      swrKey?: Key;
-      enabled?: boolean;
-    };
+    swr?: SWRConfiguration<
+      Awaited<ReturnType<typeof getIncomeExpenditureManagementCsvDownload>>,
+      TError
+    > & { swrKey?: Key; enabled?: boolean };
     request?: SecondParameter<typeof customFetch>;
   },
 ) => {
@@ -5139,8 +5139,9 @@ export const useGetFundInformationsCsvDownload = <TError = unknown>(
 
   const isEnabled = swrOptions?.enabled !== false;
   const swrKey =
-    swrOptions?.swrKey ?? (() => (isEnabled ? getGetFundInformationsCsvDownloadKey(params) : null));
-  const swrFn = () => getFundInformationsCsvDownload(params, requestOptions);
+    swrOptions?.swrKey ??
+    (() => (isEnabled ? getGetIncomeExpenditureManagementCsvDownloadKey(params) : null));
+  const swrFn = () => getIncomeExpenditureManagementCsvDownload(params, requestOptions);
 
   const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions);
 
