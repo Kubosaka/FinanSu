@@ -22,16 +22,16 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build Docker image
-        run: | 
+        run: |
           docker build -f ./prod.api.Dockerfile -t finansu-prod-api  .
           docker build --build-arg NEXT_PUBLIC_APP_ENV=${{secrets.NEXT_PUBLIC_APP_ENV}} -f ./prod.view.Dockerfile -t finansu-prod-view .
-      
+
       - name: Tag Docker image
         run: |
-          docker tag finansu-prod-api ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-api:latest
-          docker tag finansu-prod-view ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-view:latest
-      
+          docker tag finansu-prod-api ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-test-api:latest
+          docker tag finansu-prod-view ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-test-view:latest
+
       - name: Push Docker image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-api:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-view:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-test-api:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/finansu-test-view:latest
