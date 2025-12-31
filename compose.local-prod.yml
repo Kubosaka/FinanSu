@@ -1,0 +1,20 @@
+services:
+  view:
+    build:
+      context: ./view
+      dockerfile: local-prod.Dockerfile
+    container_name: "nutfes-finansu-view"
+    command: "npm run start"
+    ports: ["3000:3000"]
+    depends_on: ["api"]
+
+  api:
+    build:
+      context: ./api
+      dockerfile: prod.Dockerfile
+    container_name: "nutfes-finansu-api"
+    env_file: ["./finansu.local.env"]
+    ports: ["1323:1323"]
+    environment:
+      ENV: "develop"
+      RESET_PASSWORD_URL: "https://finansu.nutfes.net/reset_password"
